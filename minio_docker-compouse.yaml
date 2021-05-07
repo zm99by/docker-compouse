@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  s3:
+    restart: unless-stopped
+    image: minio/minio:latest
+    container_name: minio-s3
+    ports:
+      - 9000:9000
+    environment:
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+    command: 
+      server /date
+    volumes:
+      - /mnt/s3:/date
+volumes:
+  mnt:
